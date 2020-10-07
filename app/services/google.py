@@ -6,7 +6,7 @@ import requests
 BASE_URL = "https://www.googleapis.com/civicinfo/v2/"
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 
-def getElectionInfo():
+def get_election_info():
     URL = BASE_URL + "elections"
 
     PARAMS = {'key':GOOGLE_API_KEY} 
@@ -16,7 +16,7 @@ def getElectionInfo():
 
     return data
 
-def getVoterInfo(address, electionId):
+def get_voter_info(address, electionId):
     URL = BASE_URL + "voterinfo"
 
     PARAMS = {
@@ -30,7 +30,7 @@ def getVoterInfo(address, electionId):
 
     return data
 
-def getRepresentativeInfo(address):
+def get_representative_info(address):
     URL = BASE_URL + "representatives"
 
     PARAMS = {

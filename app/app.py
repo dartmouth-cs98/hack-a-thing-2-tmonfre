@@ -19,6 +19,7 @@ def create_app(config_object=ProdConfig):
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(routers.elections.api.blueprint)
+    app.register_blueprint(routers.crawler.api.blueprint)
     return None
 
 
