@@ -1,5 +1,3 @@
-"""Response formatter."""
-
 from flask import jsonify
 
 def formatSuccess(payload = {}):

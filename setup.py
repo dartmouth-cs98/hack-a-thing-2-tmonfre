@@ -1,19 +1,10 @@
-from setuptools import setup, find_packages
-
+from setuptools import setup
 
 setup(
-    name='app',
-    version='1.0',
-    long_description=__doc__,
-    packages=find_packages(),
+    name='server',
+    packages=['server'],
     include_package_data=True,
     install_requires=[
         'flask',
-    ],
-    setup_requires=[
-        'pytest-runner',
-    ],
-    tests_require=[
-        'pytest',
     ],
 )

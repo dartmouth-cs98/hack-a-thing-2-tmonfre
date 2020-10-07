@@ -1,5 +1,3 @@
-"""Google Civic Info API."""
-
 import os
 import requests 
 
