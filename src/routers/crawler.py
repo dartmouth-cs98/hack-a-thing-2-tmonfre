@@ -14,3 +14,10 @@ def link_crawler():
     url = request.args.get('url')
     data = crawler.crawl_links(url)
     return formatSuccess(data)
+
+@app.route('/crawler/keyword/', methods=['GET'])
+def keyword_crawler():
+    url = request.args.get('url')
+    keyword = request.args.get('keyword')
+    data = crawler.crawl_keywords(url, keyword)
+    return formatSuccess(data)
