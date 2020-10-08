@@ -1,7 +1,7 @@
 from flask import jsonify, request
-from server import app
-from server.src.services import google
-from server.src.services.format_response import formatSuccess, formatError
+from src import app
+from src.services import google
+from src.services.format_response import formatSuccess, formatError
 
 @app.route('/elections/', methods=['GET'])
 def get_election_info():

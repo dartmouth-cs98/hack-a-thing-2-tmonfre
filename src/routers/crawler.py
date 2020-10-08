@@ -1,7 +1,7 @@
 from flask import jsonify, request
-from server import app
-from server.src.services import crawler
-from server.src.services.format_response import formatSuccess, formatError
+from src import app
+from src.services import crawler
+from src.services.format_response import formatSuccess, formatError
 
 @app.route('/crawler/content/', methods=['GET'])
 def content_crawler():

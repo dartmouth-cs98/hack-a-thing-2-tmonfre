@@ -1,7 +1,7 @@
 import crochet
 from scrapy.crawler import CrawlerRunner
 
-from server.src.services.spiders import FetchContentSpider, DiscoverLinksSpider
+from src.services.spiders import FetchContentSpider, DiscoverLinksSpider
 
 crochet.setup()
 
