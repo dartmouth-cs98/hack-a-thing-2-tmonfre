@@ -9,6 +9,12 @@ def content_crawler():
     data = crawler.crawl_content(url)
     return formatSuccess(data)
 
+@app.route('/crawler/text/', methods=['GET'])
+def text_crawler():
+    url = request.args.get('url')
+    data = crawler.crawl_text(url)
+    return formatSuccess(data)
+
 @app.route('/crawler/links/', methods=['GET'])
 def link_crawler():
     url = request.args.get('url')
@@ -26,4 +32,10 @@ def keyword_crawler():
 def google_crawler():
     keyword = request.args.get('keyword')
     data = crawler.crawl_google(keyword)
+    return formatSuccess(data)
+
+@app.route('/crawler/google-text/', methods=['GET'])
+def google_text_crawler():
+    keyword = request.args.get('keyword')
+    data = crawler.crawl_google_text(keyword)
     return formatSuccess(data)

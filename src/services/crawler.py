@@ -1,7 +1,14 @@
 import crochet
 from scrapy.crawler import CrawlerRunner
 
-from src.services.spiders import FetchContentSpider, DiscoverLinksSpider, SearchWordsSpider, GoogleSearchSpider
+from src.services.spiders import (
+    FetchContentSpider, 
+    FetchTextSpider, 
+    DiscoverLinksSpider, 
+    SearchWordsSpider, 
+    GoogleSearchSpider,
+    GoogleArticleTextSpider
+)
 
 crochet.setup()
 
@@ -15,6 +22,13 @@ def crawl_content(url):
     init_base_crawler(url, FetchContentSpider)
     return list(dict.fromkeys(output_data))
 
+# get text of page
+def crawl_text(url):
+    global output_data
+    output_data = []
+    init_base_crawler(url, FetchTextSpider)
+    return list(dict.fromkeys(output_data))
+
 # get links in page
 def crawl_links(url):
     global output_data
@@ -22,7 +36,7 @@ def crawl_links(url):
     init_base_crawler(url, DiscoverLinksSpider)
     return list(dict.fromkeys(output_data))
 
-# get keywords in page
+# get links with keyword in page
 def crawl_keywords(url, keyword):
     global output_data
     output_data = []
@@ -37,6 +51,13 @@ def crawl_google(keyword):
     output_data = []
     init_base_crawler("https://www.google.com/search?q=" + "+".join(keyword.split()), GoogleSearchSpider)
     return list(dict.fromkeys(output_data))
+
+# get article text of google search results from keyword
+def crawl_google_text(keyword):
+    global output_data
+    output_data = []
+    init_base_crawler("https://www.google.com/search?q=" + "+".join(keyword.split()), GoogleArticleTextSpider)
+    return output_data
 
 ## BOILERPLATE FOR RUNNING
 @crochet.wait_for(timeout=60.0)
