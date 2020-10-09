@@ -38,3 +38,21 @@ class SearchWordsSpider(scrapy.Spider):
 
             if (len(link_to_append) > 0 and link_to_append != link and link != "/"):
                 self.output.append(link_to_append)
+
+class GoogleSearchSpider(scrapy.Spider):
+    name = "search-google"
+    start_urls = []
+
+    def parse(self, response):
+        link_appendage = "/url?q="
+
+        # find all google search link results
+        for link in response.xpath('/html//a[contains(@href,"https")]/@href').extract():
+            if (link.startswith(link_appendage)):
+                self.output.append(link[len(link_appendage):])
+
+        if ("&start=" not in self.start_urls[0]):
+            yield scrapy.Request(
+                response.urljoin(self.start_urls[0] + "&start=10"),
+                callback=self.parse
+            )

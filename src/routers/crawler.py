@@ -21,3 +21,9 @@ def keyword_crawler():
     keyword = request.args.get('keyword')
     data = crawler.crawl_keywords(url, keyword)
     return formatSuccess(data)
+
+@app.route('/crawler/google/', methods=['GET'])
+def google_crawler():
+    keyword = request.args.get('keyword')
+    data = crawler.crawl_google(keyword)
+    return formatSuccess(data)
