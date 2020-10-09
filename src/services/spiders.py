@@ -97,10 +97,3 @@ class GoogleArticleTextSpider(scrapy.Spider):
                 response.urljoin(new_link),
                 callback=self.parse_text
             )
-
-        # trigger second page search
-        if ("&start=" not in self.start_urls[0]):
-            yield scrapy.Request(
-                response.urljoin(self.start_urls[0] + "&start=10"),
-                callback=self.parse
-            )
